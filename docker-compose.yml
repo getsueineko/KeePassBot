@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+
+  KeePassBot:
+    container_name: KeePassBot
+    image: keepassbot:latest
+    env_file:
+      - extra_vars.env
+    restart: always
+    volumes:
+    - type: bind
+      source: ${PWD}/vault13.kdbx
+      target: /opt/AppKeePass/vault13.kdbx
+

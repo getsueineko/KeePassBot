@@ -1,0 +1,2 @@
+pykeepass==3.2.1
+pyTelegramBotAPI==3.7.2
