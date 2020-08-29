@@ -1,14 +1,11 @@
 FROM python:3.8.5-slim-buster
 
-RUN apt-get update \
-    && apt-get upgrade \
-    && apt-get autoremove \
-    && mkdir -p /opt/AppKeePass
-
 WORKDIR /opt/AppKeePass
 
-COPY ./code/. .
-
+COPY src/requirements.txt .
+    
 RUN pip install -r requirements.txt
+
+COPY src/ .
 
 CMD [ "python", "app.py" ]
