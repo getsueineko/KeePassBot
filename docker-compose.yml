@@ -8,8 +8,9 @@ services:
     env_file:
       - extra_vars.env
     restart: always
+    security_opt:
+      - no-new-privileges
     volumes:
     - type: bind
       source: ${PWD}/vault13.kdbx
       target: /opt/AppKeePass/vault13.kdbx
-
