@@ -1,17 +1,14 @@
-FROM python:3.8.5-slim-buster
+FROM python:3.8.12-slim-buster
 
-WORKDIR /opt/AppKeePass
+WORKDIR /AppKeePass
 
-RUN groupadd --gid 1000 appuser \
-  && useradd --uid 1000 --gid appuser --shell /bin/bash --create-home appuser \
+COPY src/requirements.txt src/ .
+
+RUN groupadd -r app 
+  && useradd -r -s /bin/sh -g app app \
+  && chown -R app:app /AppKeePass \
   && pip install -r requirements.txt
 
-COPY src/requirements.txt .
-    
-RUN pip install -r requirements.txt
-
-COPY src/ .
-
-USER appuser
+USER app
 
 CMD [ "python", "app.py" ]
